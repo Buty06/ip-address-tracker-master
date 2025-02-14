@@ -1,34 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | IP Address Tracker</title>
+    <meta name="description" content="A geolocation page by IP address" />
+    <meta
+      property="og:title"
+      content="Buty | Frontend Mentor | IP Address Tracker"
+    />
+    <meta property="og:description" content="A geolocation page by IP address"
+    ">
+    <meta property="og:image" content="./images/desktop-preview.jpg" />
+    <meta property="og:image:alt" content="preview" />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
 
-  IP Address Tracker
+    <title>Buty | Frontend Mentor | IP Address Tracker</title>
 
-  Search for any IP address or domain
+    <style>
+      html {
+        visibility: hidden;
+        opacity: 0;
+      }
+    </style>
 
-  IP Address
-  Location
-  Timezone
-    UTC <!-- add offset value dynamically using the API -->
-  ISP
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header_title">IP Address Tracker</h1>
+
+      <form class="ip_search">
+        <input
+          type="text"
+          id="input_search"
+          class="input_search"
+          placeholder="Search for any IP address or domain"
+          required
+        />
+        <button class="button_search" id="button_search">
+          <img src="./images/icon-arrow.svg" />
+        </button>
+      </form>
+
+      <article class="info">
+        <section class="info_sect">
+          <h3 class="info_titles">IP Address</h3>
+          <p class="info_text" id="ip_text"></p>
+        </section>
+
+        <section class="info_sect">
+          <h3 class="info_titles">Location</h3>
+          <p class="info_text" id="location_text"></p>
+        </section>
+
+        <section class="info_sect">
+          <h3 class="info_titles">Timezone</h3>
+          <p class="info_text" id="timezone_text"></p>
+        </section>
+
+        <section class="info_sect">
+          <h3 class="info_titles">ISP</h3>
+          <p class="info_text" id="isp_text"></p>
+        </section>
+      </article>
+    </header>
+
+    <main class="map" id="map"></main>
+
+    <script src="./modules/ip-adress.js"></script>
+    <script src="./script.js"></script>
+  </body>
 </html>
