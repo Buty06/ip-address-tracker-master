@@ -1,4 +1,3 @@
-const $ipSearch = document.getElementById("ip_search");
 const $input = document.getElementById("input_search");
 const $inputButton = document.getElementById("button_search");
 const $ip = document.getElementById("ip_text");
