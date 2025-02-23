@@ -6,33 +6,22 @@ const $timezone = document.getElementById("timezone_text");
 const $isp = document.getElementById("isp_text");
 const $map = document.getElementById("map");
 const $ipSearch = document.getElementById("ip_search");
+let map;
 
-const showData = async (ipAddress = '') => {
+const showData = async (ipAddress = "") => {
   const storeData = await getData(ipAddress);
 
   $ip.textContent = storeData.ip;
 
-  $locationText.textContent = `${storeData.location.country}, ${storeData.location.region}, ${storeData.location.city}`;
+  $locationText.textContent = `${storeData.location.city}, ${storeData.location.country}`;
 
-  $timezone.textContent = `UTC ${storeData.timezone}`
+  $timezone.textContent = `${storeData.location.region}`;
 
-  $isp.textContent = storeData.isp
-};
+  $isp.textContent = `${storeData.fullName} ${storeData.flag}`;
 
-$ipSearch.addEventListener('submit', async (event)=>{
-  event.preventDefault()
-  const ipAddress = $input.value.trim()
-
-  if (ipAddress) {
-    await showData(ipAddress)
-  }
-})
-
-showData();
-
-const map = () => {
-  const map = L.map("map", {
-    center: [51.505, -0.09],
+  //!Generando el Mapa
+  map = L.map("map", {
+    center: [storeData.coordinates.latitude, storeData.coordinates.longitude],
     zoom: 13,
   });
 
@@ -49,8 +38,24 @@ const map = () => {
     popupAnchor: [-3, -76],
   });
 
-  const marker = L.marker([51.5, -0.09], { icon: myIcon }).addTo(map);
+  const marker = L.marker(
+    [storeData.coordinates.latitude, storeData.coordinates.longitude],
+    { icon: myIcon }
+  ).addTo(map);
   marker.bindPopup("<b>Estas Aqui</b>").openPopup();
 };
 
-map();
+$ipSearch.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const ipAddress = $input.value.trim();
+
+  if (ipAddress) {
+    if (map) {
+      map.remove();
+      map = null;
+    }
+    await showData(ipAddress);
+  }
+});
+
+showData();
