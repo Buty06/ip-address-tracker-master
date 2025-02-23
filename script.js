@@ -5,9 +5,10 @@ const $locationText = document.getElementById("location_text");
 const $timezone = document.getElementById("timezone_text");
 const $isp = document.getElementById("isp_text");
 const $map = document.getElementById("map");
+const $ipSearch = document.getElementById("ip_search");
 
-const showData = async () => {
-  const storeData = await getData();
+const showData = async (ipAddress = '') => {
+  const storeData = await getData(ipAddress);
 
   $ip.textContent = storeData.ip;
 
@@ -18,4 +19,38 @@ const showData = async () => {
   $isp.textContent = storeData.isp
 };
 
+$ipSearch.addEventListener('submit', async (event)=>{
+  event.preventDefault()
+  const ipAddress = $input.value.trim()
+
+  if (ipAddress) {
+    await showData(ipAddress)
+  }
+})
+
 showData();
+
+const map = () => {
+  const map = L.map("map", {
+    center: [51.505, -0.09],
+    zoom: 13,
+  });
+
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(map);
+
+  const myIcon = L.icon({
+    iconUrl: "./images/icon-location.svg",
+    iconSize: [42, 65],
+    iconAnchor: [22, 94],
+    popupAnchor: [-3, -76],
+  });
+
+  const marker = L.marker([51.5, -0.09], { icon: myIcon }).addTo(map);
+  marker.bindPopup("<b>Estas Aqui</b>").openPopup();
+};
+
+map();

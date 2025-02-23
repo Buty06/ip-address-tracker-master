@@ -1,8 +1,7 @@
-const $ipSearch = document.getElementById("ip_search");
 
-const getIPApi = async () => {
+const getIPApi = async (ipAddress) => {
   const response = await fetch(
-    "https://geo.ipify.org/api/v2/country,city?apiKey=at_tb2yfj6660rK3Y2IA5OuVsU9MxL76"
+    `https://geo.ipify.org/api/v2/country,city?apiKey=at_tb2yfj6660rK3Y2IA5OuVsU9MxL76&ipAddress=${ipAddress}`
   );
 
   try {
@@ -15,23 +14,8 @@ const getIPApi = async () => {
   }
 };
 
-const getSubmitIPApi = async (ipAdress) => {
-  const response = await fetch(
-    `https://geo.ipify.org/api/v2/country,city?apiKey=at_tb2yfj6660rK3Y2IA5OuVsU9MxL76&ipAddress=${ipAdress}`
-  );
-
-  try {
-    if (!response.ok) throw new Error("Fallo al obtener la api");
-
-    const submitData = await response.json();
-    return submitData;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const getData = async () => {
-  let data = await getData();
+const getData = async (ipAddress) => {
+  const data = await getIPApi(ipAddress);
 
   //?Coleccionar la data
   const storeData = {
@@ -49,3 +33,4 @@ const getData = async () => {
 
   return storeData;
 };
+
