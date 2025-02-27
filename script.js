@@ -33,9 +33,9 @@ const showData = async (ipAddress = "") => {
 
   const myIcon = L.icon({
     iconUrl: "./images/icon-location.svg",
-    iconSize: [42, 65],
-    iconAnchor: [22, 94],
-    popupAnchor: [-3, -76],
+    iconSize: [36, 56],
+    iconAnchor: [18, 56],
+    popupAnchor: [0, -56],
   });
 
   const marker = L.marker(

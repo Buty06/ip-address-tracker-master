@@ -75,18 +75,24 @@ body {
   height: 20rem;
   width: 90%;
   margin-bottom: -100rem;
-  display: grid;
-  place-items: center;
   box-shadow: 2px 2px 10px 3px #00000031;
   border-radius: 15px;
   padding: 1rem;
   gap: 1rem;
   z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .info_sect {
-  display: grid;
-  place-items: center;
+  flex: 1 0 0;
+  min-width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .info_titles {
@@ -101,8 +107,52 @@ body {
   text-align: center;
 }
 
-.map{
+.map {
   min-height: 100%;
   width: 100%;
   z-index: 0;
+}
+
+@media (min-width: 474px) {
+  .header {
+    gap: 2rem;
+  }
+  .info {
+    height: 14rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    gap: 2.5rem;
+  }
+
+  .ip_search {
+    width: 60%;
+  }
+
+  .info {
+    height: 10rem;
+  }
+}
+
+@media (min-width: 865px) {
+  body {
+    grid-template-rows: 13rem 1fr;
+  }
+
+  .header {
+    gap: 1.5rem;
+    background: url(./images/pattern-bg-desktop.png) no-repeat center / cover;
+  }
+
+  .ip_search {
+    width: 40%;
+    height: 2.5rem;
+  }
+
+  .info {
+    height: 6rem;
+    width: 80%;
+  }
 }
