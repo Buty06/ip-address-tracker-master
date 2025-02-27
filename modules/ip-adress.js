@@ -1,5 +1,7 @@
+let response;
+
 const getIPApi = async (ipAddress) => {
-  let response = await fetch(
+  response = await fetch(
     `https://apiip.net/api/check?ip=${ipAddress}&accessKey=ccd4fb09-6572-42f0-a1a1-2dd8e733b499`
   );
 
@@ -8,7 +10,6 @@ const getIPApi = async (ipAddress) => {
       `https://apiip.net/api/check?&accessKey=ccd4fb09-6572-42f0-a1a1-2dd8e733b499`
     );
   }
-  
 
   try {
     if (!response.ok) throw new Error("Fallo al obtener la api");
